@@ -1,22 +1,81 @@
-eval "$(starship init zsh)"
-export EDITOR="nvim"
-export SUDO_EDITOR="$EDITOR"
-export PGHOST="/var/run/postgresql"
-
-export PATH=$PATH:/usr/local/go/bin
-
-HISTFILE=~/.history
-HISTSIZE=10000
-SAVEHIST=50000
-
-setopt inc_append_history
-
-. "$HOME/.asdf/asdf.sh"
-
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+# neofetch
+# proxy stuff for vpn
+export http_proxy="http://127.0.0.1:7890"
+export https_proxy="http://127.0.0.1:7890"
+export ftp_proxy="http://127.0.0.1:7890"
+export no_proxy=""
+# >>> uncomment to unset the proxy settings
+#unset http_proxy
+#unset https_proxy
+#unset ftp_proxy
+#unset all_proxy
+#unset HTTP_PROXY
+#unset HTTPS_PROXY
+#unset FTP_PROXY
+#unset ALL_PROXY
+# <<< uncomment to unset the proxy settings
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+
+
+# Created by Zap installer
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/supercharge"
+plug "zap-zsh/exa"
+plug "zap-zsh/zap-prompt"
+plug "zsh-users/zsh-syntax-highlighting"
+# plug "MAHcodes/distro-prompt"
+
+# Load and initialise completion system
+autoload -Uz compinit
+compinit
+
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.json)"
+
+# exa: is a modern replacement for ls
+# if [ -x "$(command -v exa)" ]; then
+#     alias ls="exa"
+#     alias la="exa --long --all --group"
+# fi
+
+
+
+
+
+
+
+###### env ######
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/kabil/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/kabil/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/kabil/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/kabil/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+#################
+export LLVM_PROFILE_FILE="/home/kabil/profraw_files/%p.profraw"
+export XCURSOR_THEME=Sweet-cursors
+
+# Yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
