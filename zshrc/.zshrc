@@ -9,19 +9,22 @@ export https_proxy="http://127.0.0.1:7890"
 export ftp_proxy="http://127.0.0.1:7890"
 export no_proxy=""
 # >>> uncomment to unset the proxy settings
-#unset http_proxy
-#unset https_proxy
-#unset ftp_proxy
-#unset all_proxy
-#unset HTTP_PROXY
-#unset HTTPS_PROXY
-#unset FTP_PROXY
-#unset ALL_PROXY
+# unset http_proxy
+# unset https_proxy
+# unset ftp_proxy
+# unset all_proxy
+# unset HTTP_PROXY
+# unset HTTPS_PROXY
+# unset FTP_PROXY
+# unset ALL_PROXY
 # <<< uncomment to unset the proxy settings
 
+# Set Environment Variables for Application Scaling
+# export QT_SCALE_FACTOR=0.8
+# export GDK_SCALE=0.8
 
-
-
+# GO lang
+export PATH=$PATH:/usr/local/go/bin
 
 
 # Created by Zap installer
@@ -49,23 +52,25 @@ source <(fzf --zsh)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/kabil/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/kabil/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/kabil/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/kabil/miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/kabil/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/kabil/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/kabil/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/kabil/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 #################
+
 export LLVM_PROFILE_FILE="/home/kabil/profraw_files/%p.profraw"
-export XCURSOR_THEME=Sweet-cursors
+export XCURSOR_THEME=Qogir
 
 # Yazi
 function y() {
@@ -86,3 +91,5 @@ function c() {
 	fi
 	rm -f -- "$tmp"
 }
+
+ls

@@ -26,6 +26,10 @@ export no_proxy=""
 #unset FTP_PROXY
 #unset ALL_PROXY
 
+# Set Environment Variables for Application Scaling
+export QT_SCALE_FACTOR=0.8
+export GDK_SCALE=0.8
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -46,7 +50,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export LLVM_PROFILE_FILE="/home/kabil/profraw_files/%p.profraw"
-export XCURSOR_THEME=Sweet-cursors
+export XCURSOR_THEME=Qogir
 
 # Yazi
 function y() {
